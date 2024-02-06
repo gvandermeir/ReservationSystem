@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package models;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/gvandermeir/ReservationService/Models/models";
+
+service ReservationService {
+    rpc SetAvailability(SetAvailabilityRequest) returns (SetAvailabilityResponse) {}
+    rpc GetAppointments(GetAppointmentsRequest) returns (GetAppointmentsResponse) {}
+    rpc ReserveAppointment(ReserveAppointmentRequest) returns (ReserveAppointmentResponse) {}
+    rpc ConfrimAppointment(ConfrimAppointmentRequest) returns (ConfrimAppointmentResponse) {}
+}
+
+message Provider {
+    bytes id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+message ProviderList {
+    repeated Provider providers = 1;
+}
+
+message Availability {
+    bytes providerId = 1;
+    google.protobuf.Timestamp startTime = 2;
+    google.protobuf.Timestamp endTime = 3;
+}
+
+message Patient {
+    bytes id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+message Appointment {
+    bytes id = 1;
+    bytes providerId = 2;
+    bytes patientId = 3;
+    google.protobuf.Timestamp startTime = 4;
+    google.protobuf.Timestamp endTime = 5;
+    bool confirmed = 6;
+}
+
+message SetAvailabilityRequest {
+    bytes providerId = 1;
+    repeated Availability availabilities = 2;
+}
+
+message SetAvailabilityResponse {
+    bool success = 1;
+}
+
+message GetAppointmentsRequest {
+    bytes providerId = 1;
+    string date = 2;
+}
+
+message GetAppointmentsResponse {
+    repeated Appointment appointments = 1;
+}
+
+message ReserveAppointmentRequest {
+    Appointment appointment = 1;
+}
+
+message ReserveAppointmentResponse {
+    bool success = 1;
+}
+
+message ConfrimAppointmentRequest {
+    bytes patientID = 1;
+    bytes appointmentId = 2;
+}
+
+message ConfrimAppointmentResponse {
+    bool success = 1;
+}
