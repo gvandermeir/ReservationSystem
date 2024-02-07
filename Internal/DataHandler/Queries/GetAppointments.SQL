@@ -1,0 +1,1 @@
+SELECT AppointmentID, PatientID, ProviderID, StartTime, EndTime, BookedAt, Confirmed FROM Appointments WHERE StartTime >= $1 AND EndTime <= $2 AND Confirmed = FALSE AND BookedAt <= $3 AND ProviderID IN ($4);

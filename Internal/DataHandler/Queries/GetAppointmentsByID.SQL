@@ -1,0 +1,1 @@
+SELECT * FROM Appointments WHERE AppointmentID=$1;

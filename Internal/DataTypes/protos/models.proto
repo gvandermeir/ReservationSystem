@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package models;
+package protos;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/gvandermeir/ReservationService/Models/models";
+option go_package = "github.com/gvandermeir/ReservationService/Models/protos";
 
 service ReservationService {
     rpc SetAvailability(SetAvailabilityRequest) returns (SetAvailabilityResponse) {}
@@ -17,10 +17,6 @@ message Provider {
     bytes id = 1;
     string name = 2;
     string email = 3;
-}
-
-message ProviderList {
-    repeated Provider providers = 1;
 }
 
 message Availability {
@@ -41,7 +37,8 @@ message Appointment {
     bytes patientId = 3;
     google.protobuf.Timestamp startTime = 4;
     google.protobuf.Timestamp endTime = 5;
-    bool confirmed = 6;
+    google.protobuf.Timestamp bookedAt = 6;
+    bool confirmed = 7;
 }
 
 message SetAvailabilityRequest {
@@ -54,8 +51,9 @@ message SetAvailabilityResponse {
 }
 
 message GetAppointmentsRequest {
-    bytes providerId = 1;
-    string date = 2;
+    repeated bytes providerIds = 1;
+    google.protobuf.Timestamp startTime = 2;
+    google.protobuf.Timestamp endTime = 3;
 }
 
 message GetAppointmentsResponse {
@@ -63,7 +61,8 @@ message GetAppointmentsResponse {
 }
 
 message ReserveAppointmentRequest {
-    Appointment appointment = 1;
+    bytes patientID = 1;
+    Appointment appointment = 2;
 }
 
 message ReserveAppointmentResponse {

@@ -4,7 +4,7 @@
 // - protoc             v4.25.2
 // source: models.proto
 
-package models
+package protos
 
 import (
 	context "context"
@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ReservationService_SetAvailability_FullMethodName    = "/models.ReservationService/SetAvailability"
-	ReservationService_GetAppointments_FullMethodName    = "/models.ReservationService/GetAppointments"
-	ReservationService_ReserveAppointment_FullMethodName = "/models.ReservationService/ReserveAppointment"
-	ReservationService_ConfrimAppointment_FullMethodName = "/models.ReservationService/ConfrimAppointment"
+	ReservationService_SetAvailability_FullMethodName    = "/protos.ReservationService/SetAvailability"
+	ReservationService_GetAppointments_FullMethodName    = "/protos.ReservationService/GetAppointments"
+	ReservationService_ReserveAppointment_FullMethodName = "/protos.ReservationService/ReserveAppointment"
+	ReservationService_ConfrimAppointment_FullMethodName = "/protos.ReservationService/ConfrimAppointment"
 )
 
 // ReservationServiceClient is the client API for ReservationService service.
@@ -195,7 +195,7 @@ func _ReservationService_ConfrimAppointment_Handler(srv interface{}, ctx context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ReservationService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "models.ReservationService",
+	ServiceName: "protos.ReservationService",
 	HandlerType: (*ReservationServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
